@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/HomePage.dart';
 import 'RegisterPage.dart';
-import 'CustomTextField.dart';
+import 'Widget/CustomTextField.dart';
+import 'Widget/reusable.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,8 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController controllerUsername = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
   String statusLogin = "";
 
   @override
@@ -60,14 +61,14 @@ class _LoginPageState extends State<LoginPage> {
 
               CustomTextField(
                 label: "Email / Username",
-                controller: _usernameController,
+                controller: controllerUsername,
                 icon: Icons.email,
               ),
               const SizedBox(height: 16),
 
               CustomTextField(
                 label: "Password",
-                controller: _passwordController,
+                controller: controllerPassword,
                 isPassword: true,
                 icon: Icons.lock,
               ),
@@ -91,44 +92,38 @@ class _LoginPageState extends State<LoginPage> {
     ),
   ),
 ),
-              ElevatedButton(
-                onPressed: () {
-                  String username = _usernameController.text;
-                  String password = _passwordController.text;
-                  if (username == "admin" && password == "password") {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text(
-                          "Login Sukses!",
-                          style: TextStyle(color: Colors.white),
+              Container(
+                child: CustomButton(
+                  text: "Login",
+                  textColor: Colors.white,
+                  onPressed: () {
+                    if (controllerUsername.text == "admin" && controllerPassword.text == "password") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text(
+                            "Login Sukses!",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.green.shade600,
+                          duration: const Duration(seconds: 2),
                         ),
-                        backgroundColor: Colors.green.shade600,
-                        duration: const Duration(seconds: 2),
-                      ),
-                    );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomePage(),
-                      ),
-                    );
-                    setState(() {
-                      statusLogin = "";
-                    });
-                  } else {
-                    setState(() {
-                      statusLogin = "Gagal login: username/password salah";
-                    });
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(45),
-                  backgroundColor: const Color.fromARGB(255, 33, 243, 79),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
+                      setState(() {
+                        statusLogin = "";
+                      });
+                    } else {
+                      setState(() {
+                        statusLogin = "Gagal login: username/password salah";
+                      });
+                    }
+                  },
                 ),
-                child: const Text("Login", style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 255, 255, 255))),
               ),
 
               const SizedBox(height: 10),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'CustomTextField.dart';
+import 'Widget/CustomTextField.dart';
+import 'Widget/reusable.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -116,19 +117,16 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             const SizedBox(height: 30),
 
-            ElevatedButton(
+            CustomButton(
+              text: "Daftar",
+              textColor: Colors.white,
+              backgroundColor: Colors.green,
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Registrasi berhasil")),
                 );
                 Navigator.pop(context);
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(45),
-                backgroundColor: Colors.green, 
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              ),
-              child: const Text("Daftar", style: TextStyle(fontSize: 16, color: Colors.white)),
             ),
           ],
         ),

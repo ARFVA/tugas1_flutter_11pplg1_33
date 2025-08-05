@@ -4,14 +4,14 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final bool isPassword;
-  final IconData? icon;
+  final IconData icon;
 
   const CustomTextField({
     super.key,
     required this.label,
     required this.controller,
     this.isPassword = false,
-    this.icon,
+    required this.icon,
   });
 
   @override
@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPassword,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: icon != null ? Icon(icon) : null,
+        prefixIcon: Icon(icon),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
