@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/CalculatorController.dart';
 import 'package:flutter_application_1/Widget/CustomTextField.dart';
@@ -64,14 +65,9 @@ class CalculatorPage extends StatelessWidget {
                 Obx(() => Text("Hasil "+calculatorController.hasil.value)),
                 SizedBox(height: 16),
                 CustomButton(
-                  text: "Clear",
-                  textColor: Colors.white,
-                  backgroundColor: Colors.red,
-                  onPressed: () {
-                    calculatorController.txtAngka1.clear();
-                    calculatorController.txtAngka2.clear();
-                    calculatorController.hasil.value = "0";
-                  },
+                 text: "Footbal Players", textColor: Colors.blueAccent, onPressed: () {
+              Get.toNamed(AppRoutes.footballPlayers);
+            }
                 ),
               ],
             ),
